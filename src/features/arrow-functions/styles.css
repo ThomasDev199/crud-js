@@ -1,0 +1,624 @@
+body {
+    background: #fafaf9;
+    color: #1c1917;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ===== Header ===== */
+.header {
+    padding: 24px 0 40px;
+    margin-bottom: 40px;
+    text-align: left;
+    border-bottom: 1px solid #e7e5e4;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.header h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1c1917;
+}
+
+.header .role {
+    margin: 0;
+    padding-left: 14px;
+    border-left: 3px solid #a8a29e;
+    font-size: 1.05rem;
+    color: #57534e;
+}
+
+.header .bio {
+    margin: 16px 0;
+    max-width: 560px;
+    line-height: 1.6;
+    color: #57534e;
+}
+
+/* Etiquetas de tecnologías */
+.header .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.header .tag {
+    padding: 4px 12px;
+    border: 1px solid #d6d3d1;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 0.85rem;
+    color: #44403c;
+}
+
+/* Enlaces */
+.header .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header .links a {
+    color: #1c1917;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid #a8a29e;
+    transition: border-color 0.2s ease;
+}
+
+.header .links a:hover {
+    border-color: #1c1917;
+}
+
+/* Tarjetas */
+.card {
+    border: 1px solid #e7e5e4;
+    border-radius: 16px;
+    background: #fff;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(28, 25, 23, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    /* todas las imágenes quedan del mismo tamaño */
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-text {
+    color: #57534e;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===== Botones de las cards ===== */
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    /* empuja los botones al fondo de la card */
+    padding-top: 16px;
+}
+
+.btn-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background 0.2s ease, color 0.2s ease;
+}
+
+/* Principal */
+.btn-card-primary {
+    background: #1c1917;
+    color: #fff;
+    border: 2px solid #1c1917;
+    box-shadow: 0 4px 12px rgba(28, 25, 23, 0.25);
+}
+
+.btn-card-primary:hover {
+    background: #292524;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(28, 25, 23, 0.35);
+}
+
+.btn-card-primary .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.btn-card-primary:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Secundario */
+.btn-card-outline {
+    background: transparent;
+    color: #1c1917;
+    border: 2px solid #d6d3d1;
+}
+
+.btn-card-outline:hover {
+    background: #1c1917;
+    color: #fff;
+    border-color: #1c1917;
+    transform: translateY(-2px);
+}
+
+/* Accesibilidad: foco visible con teclado */
+.btn-card:focus-visible {
+    outline: 3px solid #a8a29e;
+    outline-offset: 3px;
+}
+
+/* =====================================================
+   MODAL DE PROYECTOS
+   ===================================================== */
+
+/* Variables para cambiar la paleta fácilmente */
+.project-modal {
+    --pm-ink: #1c1917;
+    --pm-text: #57534e;
+    --pm-muted: #78716c;
+    --pm-line: #e7e5e4;
+    --pm-soft: #fafaf9;
+    --pm-accent: #a8a29e;
+}
+
+/* ---------- Contenedor ---------- */
+.project-modal {
+    position: relative;
+    border: none;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow:
+        0 0 0 1px rgba(28, 25, 23, 0.04),
+        0 30px 80px rgba(28, 25, 23, 0.35);
+}
+
+/* Animación de apertura más suave */
+.modal.fade .modal-dialog {
+    transform: translateY(32px) scale(0.96);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0) scale(1);
+}
+
+/* Fondo oscuro con desenfoque */
+.modal-backdrop.show {
+    opacity: 1;
+    background: rgba(28, 25, 23, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+/* ---------- Portada ---------- */
+.modal-cover {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+/* Degradados: arriba para la X, abajo para fundir con el contenido */
+.project-modal::before,
+.project-modal::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 280px;
+    pointer-events: none;
+}
+
+.project-modal::before {
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(28, 25, 23, 0.4), transparent 45%);
+}
+
+.project-modal::after {
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(to top, #fff 0%, transparent 35%);
+}
+
+/* ---------- Botón cerrar ---------- */
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: #fff;
+    background-size: 12px;
+    border-radius: 50%;
+    opacity: 1;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg) scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close:focus-visible {
+    outline: 3px solid var(--pm-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+/* ---------- Cuerpo ---------- */
+.project-modal .modal-body {
+    position: relative;
+    z-index: 2;
+    max-height: 52vh;
+    overflow-y: auto;
+    padding: 8px 36px 16px;
+    margin-top: -24px;
+    /* sube el contenido sobre la portada */
+    scrollbar-width: thin;
+    scrollbar-color: #d6d3d1 transparent;
+}
+
+.project-modal .modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.project-modal .modal-body::-webkit-scrollbar-thumb {
+    background: #d6d3d1;
+    border-radius: 999px;
+}
+
+/* Categoría */
+.modal-category {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 14px;
+    border: 1px solid var(--pm-line);
+    border-radius: 999px;
+    background: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pm-text);
+    box-shadow: 0 2px 6px rgba(28, 25, 23, 0.06);
+}
+
+/* Título */
+.project-modal .modal-title {
+    margin: 0 0 12px;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--pm-ink);
+}
+
+/* Descripción */
+.modal-desc {
+    margin-bottom: 22px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--pm-text);
+}
+
+/* ---------- Info rápida (Año / Rol / Estado) ---------- */
+.modal-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 0 28px;
+    border: 1px solid var(--pm-line);
+    border-radius: 16px;
+    background: linear-gradient(135deg, #fff, var(--pm-soft));
+    overflow: hidden;
+}
+
+.modal-meta>div {
+    padding: 16px 20px;
+}
+
+.modal-meta>div+div {
+    border-left: 1px solid var(--pm-line);
+}
+
+.modal-meta span {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pm-muted);
+}
+
+.modal-meta strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--pm-ink);
+}
+
+/* Estado con punto de color */
+#modalStatus::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--pm-accent);
+}
+
+#modalStatus[data-state="Terminado"]::before {
+    background: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+}
+
+#modalStatus[data-state="En desarrollo"]::before {
+    background: #d97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+    animation: pmPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pmPulse {
+    50% {
+        box-shadow: 0 0 0 6px rgba(217, 119, 6, 0);
+    }
+}
+
+/* ---------- Subtítulos ---------- */
+.modal-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pm-muted);
+}
+
+.modal-subtitle::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--pm-line);
+}
+
+/* ---------- Características ---------- */
+.modal-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 0 0 28px;
+    padding: 0;
+    list-style: none;
+}
+
+.modal-features li {
+    position: relative;
+    padding: 12px 14px 12px 44px;
+    border: 1px solid var(--pm-line);
+    border-radius: 12px;
+    background: var(--pm-soft);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--pm-text);
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.modal-features li:hover {
+    border-color: var(--pm-accent);
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+.modal-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pm-ink);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+/* ---------- Tecnologías ---------- */
+.project-modal .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.project-modal .tag {
+    padding: 6px 14px;
+    border: 1px solid var(--pm-line);
+    border-radius: 999px;
+    background: #fff;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #44403c;
+    transition: background 0.2s ease, color 0.2s ease,
+        border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-modal .tag:hover {
+    background: var(--pm-ink);
+    border-color: var(--pm-ink);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ---------- Lo que aprendí ---------- */
+.modal-learned {
+    position: relative;
+    margin: 0 0 12px;
+    padding: 20px 24px 20px 28px;
+    border: 1px solid var(--pm-line);
+    border-left: 4px solid var(--pm-ink);
+    border-radius: 0 16px 16px 0;
+    background: var(--pm-soft);
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--pm-text);
+}
+
+/* ---------- Footer ---------- */
+.project-modal .modal-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 18px 36px;
+    border-top: 1px solid var(--pm-line);
+    background: var(--pm-soft);
+}
+
+/* ---------- Animación de entrada del contenido ---------- */
+.modal.show .modal-body>* {
+    animation: pmFadeUp 0.45s ease both;
+}
+
+.modal.show .modal-body>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.modal.show .modal-body>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.modal.show .modal-body>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.modal.show .modal-body>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.modal.show .modal-body>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.modal.show .modal-body>*:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.modal.show .modal-body>*:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.modal.show .modal-body>*:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.modal.show .modal-body>*:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+@keyframes pmFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .modal-cover {
+        height: 210px;
+    }
+
+    .project-modal::before,
+    .project-modal::after {
+        height: 210px;
+    }
+
+    .project-modal .modal-body {
+        padding: 8px 22px 12px;
+        max-height: 58vh;
+    }
+
+    .modal-features {
+        grid-template-columns: 1fr;
+    }
+
+    .project-modal .modal-footer {
+        padding: 16px 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-meta>div+div {
+        border-left: none;
+        border-top: 1px solid var(--pm-line);
+    }
+
+    .project-modal .modal-footer .btn-card {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+}
+
+/* Respeta a quienes prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+
+    .modal.show .modal-body>*,
+    #modalStatus::before {
+        animation: none;
+    }
+
+    .modal.fade .modal-dialog,
+    .modal-close,
+    .modal-features li,
+    .project-modal .tag {
+        transition: none;
+    }
+}
